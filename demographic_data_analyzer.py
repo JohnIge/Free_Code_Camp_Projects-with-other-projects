@@ -42,18 +42,18 @@ print("The average of age of men in the dataset is",average_age_men,".")
 
 #Percentage of Bachelors Degree Holders
 bachelors_degree_df = df[df['education'].str.contains('Bachelors')]
-bachelors_percentage = round((((bachelors_degree_df['education'].value_counts()).sum() / (df['education'].value_counts()).sum()) * 100), 2)
+bachelors_percentage = round((((bachelors_degree_df['education'].value_counts()).sum() / (df['education'].value_counts()).sum()) * 100), 1)
 print("The percentage of Bachelors Degree Holders is",bachelors_percentage,"%.")
 
 #Percentage of people with advanced education and makes more than 50K
 more_than_50_df = df.loc[df['salary'].str.contains('>50K')]
 with_advanced_education_df = more_than_50_df.query("education_num >= 13")
-percent_with_adavanced_education = round((((with_advanced_education_df['education'].value_counts()).sum() / (df['education'].value_counts()).sum()) * 100), 2)
+percent_with_adavanced_education = round((((with_advanced_education_df['education'].value_counts()).sum() / (df['education'].value_counts()).sum()) * 100), 1)
 print("The percentage of people with advanced education and makes more than 50K is",percent_with_adavanced_education, "%.")
 
 #Percentage of people without advanced education and makes more than 50K
 without_advanced_education_df = more_than_50_df.query("education_num < 13")
-percent_without_advanced_education = round((((without_advanced_education_df['education'].value_counts()).sum() / (df['education'].value_counts()).sum()) * 100), 2)
+percent_without_advanced_education = round((((without_advanced_education_df['education'].value_counts()).sum() / (df['education'].value_counts()).sum()) * 100), 1)
 print("The percentage of people without advanced education and makes more than 50K is",percent_without_advanced_education,"%." )
 
 #Minimum hours of work per week
@@ -63,13 +63,13 @@ print("Minimum number of hours of work in the dataset per week:",minimum_hours)
 #Percentage of the people who work the minimum number of hours per week have a salary of more than 50K
 people_with_minimum_hours = df[df['hours_per_week'] == minimum_hours]
 scenario = people_with_minimum_hours.loc[people_with_minimum_hours['salary'].str.contains('>50K')]
-percent_of_scenario = round(((scenario['salary'].value_counts()).sum() / (df.loc[df['salary'].str.contains('>50K'), ['id']].value_counts()).sum()) * 100, 2)
+percent_of_scenario = round(((scenario['salary'].value_counts()).sum() / (df.loc[df['salary'].str.contains('>50K'), ['id']].value_counts()).sum()) * 100, 1)
 print("The percentage of the people who work the minimum number of hours per week have a salary of more than 50K is",percent_of_scenario,"%.")
 
 #Country that has the highest percentage of people that earn >50K and the percentage.
 country_in_scenario = more_than_50_df['native_country'].max()
 print("Country with the highest percentage of people that earn greater than 50K is",country_in_scenario,".")
-country_people_percent = round((((more_than_50_df[more_than_50_df['native_country'].str.contains(country_in_scenario)].value_counts()).sum()) / ((df['native_country'].value_counts()).sum())) * 100, 2)
+country_people_percent = round((((more_than_50_df[more_than_50_df['native_country'].str.contains(country_in_scenario)].value_counts()).sum()) / ((df['native_country'].value_counts()).sum())) * 100, 1)
 print("The percentage of the people in this category is",country_people_percent,"%.")
 
 #Most popular occupation for those who earn >50K in India.
